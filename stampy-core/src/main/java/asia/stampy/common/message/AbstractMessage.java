@@ -98,7 +98,9 @@ public abstract class AbstractMessage<HDR extends StampyMessageHeader> implement
       builder.append(header);
     }
     builder.append("\n\n");
-    builder.append(body);
+    if( this.messageType.hasBody() && body != null ){
+        builder.append(body);
+    }
 
     builder.append(StompMessageParser.EOM);
 
