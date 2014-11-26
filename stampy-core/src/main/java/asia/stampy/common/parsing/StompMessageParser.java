@@ -79,7 +79,9 @@ public class StompMessageParser {
     try {
       reader = new BufferedReader(new StringReader(stompMessage));
 
-      String messageType = reader.readLine();
+    
+      String messageType;
+      while( (messageType = reader.readLine()).length() < 2 );  //skip emtpy lines... //TODO: should check for key words like CONNECT, SEND,...
 
       StompMessageType type = StompMessageType.valueOf(messageType);
 
