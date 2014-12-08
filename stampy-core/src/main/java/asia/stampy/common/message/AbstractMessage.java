@@ -34,7 +34,7 @@ import asia.stampy.common.parsing.StompMessageParser;
  */
 @StampyLibrary(libraryName="stampy-core")
 public abstract class AbstractMessage<HDR extends StampyMessageHeader> implements StampyMessage<HDR> {
-
+   
   private static final long serialVersionUID = -577180637937320507L;
 
   private HDR header;
@@ -90,7 +90,7 @@ public abstract class AbstractMessage<HDR extends StampyMessageHeader> implement
     StringBuilder builder = new StringBuilder();
 
     String body = postHeader();
-
+   
     builder.append(getMessageType().name());
     String header = getHeader().toMessageHeader();
     if (StringUtils.isNotEmpty(header)) {
@@ -101,9 +101,9 @@ public abstract class AbstractMessage<HDR extends StampyMessageHeader> implement
     if( this.messageType.hasBody() && body != null ){
         builder.append(body);
     }
-
+   
     builder.append(StompMessageParser.EOM);
-
+        
     return builder.toString();
   }
 

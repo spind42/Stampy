@@ -263,13 +263,16 @@ public class StompMessageParser {
     for (String header : headers) {
       StringTokenizer st = new StringTokenizer(header, ":");
 
-      if (st.countTokens() < 2) {
+      if (st.countTokens() < 1) {
         log.error("Cannot parse STOMP header {}", header);
         throw new UnparseableException("Cannot parse STOMP header " + header);
       }
 
+      String value = "";
       String key = st.nextToken();
-      String value = header.substring(key.length() + 1);
+      if( st.hasMoreTokens() ){
+        value = header.substring(key.length() + 1);
+      }
 
       message.getHeader().addHeader(key, value);
     }

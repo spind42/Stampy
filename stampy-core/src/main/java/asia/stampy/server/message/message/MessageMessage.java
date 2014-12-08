@@ -75,11 +75,11 @@ public class MessageMessage extends AbstractBodyMessage<MessageHeader> {
    */
   @Override
   public void validate() {
-    if (StringUtils.isEmpty(getHeader().getDestination())) {
+    if (StringUtils.isEmpty(getHeader().getDestination()) && !this.getHeader().hasHeader("browser") ) { 
       throw new InvalidStompMessageException(MessageHeader.DESTINATION + " is required");
     }
 
-    if (StringUtils.isEmpty(getHeader().getMessageId())) {
+    if (StringUtils.isEmpty(getHeader().getMessageId()) && !this.getHeader().hasHeader("browser") ) {
       throw new InvalidStompMessageException(MessageHeader.MESSAGE_ID + " is required");
     }
 
