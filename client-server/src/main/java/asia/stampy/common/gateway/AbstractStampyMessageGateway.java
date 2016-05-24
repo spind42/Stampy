@@ -38,6 +38,7 @@ import asia.stampy.common.message.StompMessageType;
 import asia.stampy.common.message.interceptor.InterceptException;
 import asia.stampy.common.message.interceptor.StampyOutgoingMessageInterceptor;
 import asia.stampy.common.message.interceptor.StampyOutgoingTextInterceptor;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * A StampyMessageGateway is the interface between the technology used to
@@ -56,7 +57,7 @@ public abstract class AbstractStampyMessageGateway {
   /** The text interceptors. */
   protected Queue<StampyOutgoingTextInterceptor> textInterceptors = new ConcurrentLinkedQueue<StampyOutgoingTextInterceptor>();
 
-  private List<StampyMessageListener> listeners = Collections.synchronizedList(new ArrayList<StampyMessageListener>());
+  private List<StampyMessageListener> listeners = new CopyOnWriteArrayList<StampyMessageListener>();//Collections.synchronizedList(new ArrayList<StampyMessageListener>());
 
   private Lock stampyInterceptorLock = new ReentrantLock(true);
   private Lock textInterceptorLock = new ReentrantLock(true);

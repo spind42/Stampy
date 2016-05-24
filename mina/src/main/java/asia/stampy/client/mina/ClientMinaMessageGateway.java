@@ -98,6 +98,8 @@ public class ClientMinaMessageGateway extends AbstractStampyMinaMessageGateway {
     } else {
       log.error("Could not connect to {}:{}", host, getPort());
     }
+    
+        
   }
 
   private void addServiceListeners() {
@@ -178,6 +180,9 @@ public class ClientMinaMessageGateway extends AbstractStampyMinaMessageGateway {
     for (HostPort hostPort : serviceAdapter.getHostPorts()) {
       getHandler().getHeartbeatContainer().reset(hostPort);
     }
+    
+    log.trace("broadcasting message:\n{}", message);
+            
     connector.broadcast(message);
   }
 
